@@ -54,7 +54,6 @@ jobs:
       - name: Unzip artifact for deployment
         run: |
           unzip release.zip
-          node index.js
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -69,3 +68,5 @@ jobs:
           app-name: 'Flyhalf'
           slot-name: 'Production'
           package: .
+      - name: 'restart'
+        run: node index.js
