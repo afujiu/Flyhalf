@@ -52,8 +52,9 @@ jobs:
           name: node-app
 
       - name: Unzip artifact for deployment
-        run: unzip release.zip
-      
+        run: |
+          unzip release.zip
+          node index.js
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -62,7 +63,6 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_70362D7E875243399135FE9242AFE0E0 }}
 
       - name: 'Deploy to Azure Web App'
-        run: node index.js
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
