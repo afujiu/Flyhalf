@@ -62,11 +62,10 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_70362D7E875243399135FE9242AFE0E0 }}
 
       - name: 'Deploy to Azure Web App'
+        run: node index.js
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'Flyhalf'
           slot-name: 'Production'
           package: .
-        run: node index.js
-          
