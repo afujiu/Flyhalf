@@ -1,10 +1,8 @@
 {
   "name": "flyhalf",
   "version": "1.0.0",
-  "description": "https://vibrant-carson-05acbd.netlify.app/",
-  "main": "index.js",
+  "main": "server.js",
   "author": "",
-  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "encoding-japanese": "^1.0.30",
