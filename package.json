@@ -1,7 +1,6 @@
 {
   "name": "flyhalf",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,8 +10,6 @@
     "encoding-japanese": "^1.0.30",
     "express": "^4.17.1"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "engines": {
     "node": "18.x"
