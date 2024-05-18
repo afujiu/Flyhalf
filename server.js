@@ -3,7 +3,8 @@ const express = require(`express`)
 const app = express()
 const cors = require(`cors`)
 //const request = require(`request`)
-app.listen(3000, () => {
+app.listen(8080, () => {
+  console.log("a")
 })
 app.use(express.static(`./front`));
 app.use(express.urlencoded({ extended: true, limit: `1000mb` }))
