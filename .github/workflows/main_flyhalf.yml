@@ -68,5 +68,3 @@ jobs:
           app-name: 'Flyhalf'
           slot-name: 'Production'
           package: .
-      - name: 'restart'
-        run: node index.js
