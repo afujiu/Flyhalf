@@ -8,11 +8,10 @@
   "dependencies": {
     "cors": "^2.8.5",
     "encoding-japanese": "^1.0.30",
-    "express": "^4.17.1",
-    "request": "^2.88.2"
+    "express": "^4.17.1"
   },
   "devDependencies": {},
   "engines": {
-    "node": "18.16.0"
+    "node": "18.x"
   }
 }
