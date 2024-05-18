@@ -1,15 +1,17 @@
 {
   "name": "flyhalf",
   "version": "1.0.0",
-  "main": "server.js",
-  "author": "",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "encoding-japanese": "^1.0.30",
     "express": "^4.17.1"
   },
-  "devDependencies": {},
-  "engines": {
-    "node": "18.x"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
