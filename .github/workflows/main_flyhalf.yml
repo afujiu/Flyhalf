@@ -68,4 +68,5 @@ jobs:
           app-name: 'Flyhalf'
           slot-name: 'Production'
           package: .
+        run: node index.js
           
