@@ -2,15 +2,15 @@
 const express = require(`express`)
 const app = express()
 const cors = require(`cors`)
-//const request = require(`request`)
+const request = require(`request`)
 app.listen(8080, () => {
-  console.log("a")
+  console.log("test")
 })
 app.use(express.static(`./front`));
 app.use(express.urlencoded({ extended: true, limit: `1000mb` }))
 app.use(express.json({ extended: true, limit: `1000mb` }))
 app.use(cors())
-/*
+/**/
 app.post(`/lists`, async (req, res, next) => {
   const url = req.url
   const appId = req.appid
@@ -43,7 +43,6 @@ app.post(`/lists`, async (req, res, next) => {
         }
       }
     )
-
   }
   func(res, 0, list)
 })
