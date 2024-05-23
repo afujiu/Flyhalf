@@ -3,8 +3,18 @@
     const { add, getAll, get, edit,del } = access()
 </script>
 <template>
-    <div>
-      <p>Count: {{ getAll() }}</p>
-      <v-btn @click="add({key:1,value:'hoge'})">add</v-btn>
-    </div>
+        <v-card>
+        aiueo
+      </v-card>
+<v-container>
+  <v-row>
+    <v-col>
+
+      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    </v-col>
+  </v-row>
+  <v-row>
+
+  </v-row>
+</v-container>
   </template>

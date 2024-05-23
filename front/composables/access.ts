@@ -2,19 +2,21 @@ import { ref } from 'vue'
 
 export function access() {
   const list = ref([])
-  function add(val:object) {
+  const runtimeConfig = useRuntimeConfig();
+  function add(val: object) {
     list.value.push(val);
   }
-  function getAll(){
+  function getAll() {
+    console.log(runtimeConfig.public.apiUrl)
     return list.value;
   }
   function get() {
     return list.value;
   }
-  function edit(key:number,val:object) {
-    list.value[key]=val;
+  function edit(key: number, val: object) {
+    list.value[key] = val;
   }
-  function del(key:number) {
+  function del(key: number) {
     delete list.value[key];
   }
 

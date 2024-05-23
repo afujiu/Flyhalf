@@ -3,6 +3,11 @@ import vuetify from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
+  runtimeConfig: {
+    public: {
+      apiUrl: 'http://localhost:8080',
+    }
+  },
   build: {
     transpile: ['vuetify'],
   },
