@@ -1,0 +1,53 @@
+/*標準*/
+.wi-half {
+    width: 50%;
+}
+
+.wi-full {
+    width: 100%;
+}
+
+.wi-p25 {
+    width: 25%;
+}
+
+.wi-p10 {
+    width: 10%;
+}
+
+.wi-10em {
+    width: 10em;
+}
+
+/**　フォントサイズ **/
+.em2 {
+    font-size: 2em;
+}
+
+.em3 {
+    font-size: 3em;
+}
+
+.em5 {
+    font-size: 5em;
+}
+
+.em8 {
+    font-size: 8em;
+}
+
+
+h {
+    font-size: 5em;
+}
+
+h2 {
+    font-size: 3em;
+}
+
+h3 {
+    font-size: 2em;
+}
+
+/*PC*/
+@media screen and (min-width:1024px) {}
