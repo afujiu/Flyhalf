@@ -21,7 +21,6 @@
         <v-container class="pa-0 ma-0">
           <v-row>
             <v-col class="pa-0 ma-0" cols=12><h>Fly Half</h></v-col>
-            <v-col class="" cols=12>Enjoy Scrum Management</v-col>
             <v-col class="pa-0 ma-0" cols=12><input type="text" class="em2 wi-10em" placeholder="LoginId" size="4"/></v-col>
             <v-col class="pa-0 ma-0" cols=12><input type="password" class="em2  wi-10em" placeholder="Password" size="4"/></v-col>
             <v-col class="py-5 my-5" cols=12></v-col>

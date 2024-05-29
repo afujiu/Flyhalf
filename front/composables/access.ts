@@ -1,5 +1,8 @@
 import { ref } from 'vue'
-
+/**
+ * 
+ * @returns 
+ */
 export function access() {
   const list = ref([])
   const runtimeConfig = useRuntimeConfig();
@@ -7,10 +10,19 @@ export function access() {
     list.value.push(val);
   }
   function getAll() {
-    console.log(runtimeConfig.public.apiUrl)
     return list.value;
   }
   function get() {
+    await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(param),
+      headers: {//例
+        'Content-Type': 'application/json',
+      },
+    });
+
+
+
     return list.value;
   }
   function edit(key: number, val: object) {
