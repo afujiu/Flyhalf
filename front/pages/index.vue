@@ -1,10 +1,18 @@
 <script setup lang="ts">
   import { ref } from 'vue'
-  
+  const access = accessStore();
   /**
    * ログイン
    */
-  const pushLogin = ()=>{
+  const pushLogin = async ()=>{
+    let data = await access.getAll({
+      domain:'hgoehoge',
+      appId:'1',
+      loginId:'fugafuga',
+      password:'piyopiyo',
+      query:''
+    })
+    console.log(data)
     navigateTo('/mainBoard');
   }
   /**

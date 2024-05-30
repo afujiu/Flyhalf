@@ -14,17 +14,18 @@ app.use(cors())
  * 全データ取得
  */
 app.post(`/kintone/getAll`, async (req, res, next) => {
-  const url = req.url
-  const appId = req.appid
-  const logindId = req.loginId
-  const password = req.password
-  const query = req.query
+  const domain = req.body.domain
+  const appId = req.body.appId
+  const logindId = req.body.loginId
+  const password = req.body.password
+  const query = req.body.query
   let limit = 500
   list = []
+  
   let func = (res, offset, list) => {
     request(
       {
-        url: url,
+        url: `https://${domain}.cybozu.com/k/v1/records.json`,
         method: 'GET',
         headers: {
           'Content-type': `application/json`,
@@ -32,7 +33,7 @@ app.post(`/kintone/getAll`, async (req, res, next) => {
         },
         json: true,
         body: {
-          'query': `${query} limit ${limit} offset ${1 + (offset * limit)}`,
+          'query': `${query} limit ${limit} offset ${(offset * limit)}`,
           'app': appId,
         }
       }, (err, req, data) => {
