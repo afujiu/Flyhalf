@@ -5,9 +5,29 @@ const formatKintoneObject = (results) => {
   for (let data of results) {
     let columns = {}
     for (const key in data) {
-      columns[key] = data[key].value
+      switch(key){
+        case '$id':
+          columns['id'] = data[key].value
+        break
+        case '作成日時':
+          columns['createDate'] = data[key].value
+        break
+        case '更新日時':
+          columns['updateDate'] = data[key].value
+        break
+        case '作成者':
+          columns['createUser'] = data[key].value
+        break
+        case '更新者':
+          columns['updateUser'] = data[key].value
+        break
+        
+        default:
+          columns[key] = data[key].value
+        break
+      }
     }
-    format.push[columns]
+    format.push(columns)
   }
   return format
 }

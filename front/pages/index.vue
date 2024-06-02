@@ -3,13 +3,23 @@ import { ref } from 'vue'
 import { account } from '~/composables/account';
 const route = useRoute();
 const LoginId = ref("")
-const password = ref("s")
+const password = ref("")
+
+/**
+ * ログアウト
+ */
+account().logout()
+
 /**
 * ログイン
 */
 const pushLogin = async () => {
-  let data = await account().login(route.query.type, route.query, LoginId.value, password.value)
-  navigateTo('/mainBoard');
+  let result = await account().login(route.query.type, route.query, LoginId.value, password.value)
+  if(result){
+    navigateTo('/selectTeams');
+  }else{
+    alert("LoginError")
+  }
 }
 /**
  * チーム作成

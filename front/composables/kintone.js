@@ -2,6 +2,7 @@
  * kintoneでのアクセス
  */
 import { ref } from 'vue';
+import { session } from '~/composables/session';
 export function kintone() {
   const flyhalf_session = ref('')
   const teams = ref([])
@@ -17,20 +18,20 @@ export function kintone() {
    * @returns
    */
   const login = async (type, loginId, password, param) => {
-    flyhalf_session.value = btoa(JSON.stringify({
+    session().set({
       type: type,
       domain: param.domain,
       loginId: loginId,
       password: password,
       teamAppId: param.teamAppId
-    }))
-    const result = await post('kintone/team', { auth: flyhalf_session.value }, null)
+    })
+    const result = await post('kintone/team', { auth: session().getBase64() }, null)
     /**
      * 成功した場合
      */
     if (result.state == 'suc') {
       result.resutl
-      setSession(flyhalf_session.value)
+      session().set(flyhalf_session.value)
       return true
     } else {
       return false
@@ -40,7 +41,7 @@ export function kintone() {
    * ログアウト
    */
   const logout = () => {
-    window.sessionStorage.removeItem('flyhalf_session');
+    session().remove();
   };
   /**
    * 単一post
@@ -60,25 +61,19 @@ export function kintone() {
     return data
   };
 
-  const getAll = (api, postData = null) => {
-    flyhalf_session.value = window.sessionStorage.getItem('flyhalf_session');
-    const url = `${endPoint.value}/${api}`
-    return new Promise(async (resolve) => {
-      const data = await useFetch(url, {
-        method: 'POST',
-        headers: {
-          auth: flyhalf_session.value
-        },
-        body: postData,
-      });
-      resolve(data)
-    })
-  };
   /**
    * kintoneでのデータ管理関数を返す
    */
-  const getFuncs = () => {
+  const getTable = () => {
     return {
+      team:{
+        getLists: async () => {
+
+        },
+        set: async (id) => {
+
+        },
+      },
       task: {
         get: async (query) => {
 
@@ -110,17 +105,6 @@ export function kintone() {
     }
   }
 
-  /***********************************************************************
-   * セッションgetter,setter
-   */
-  const getSession = () => {
-    JSON.parse(atob(window.sessionStorage.getItem('flyhalf_session')))
-  }
-  const setSession = (flyhalf_session) => {
-    window.sessionStorage.setItem('flyhalf_session', btoa(JSON.stringify(flyhalf_session)))
-  }
-  /********************************************************************** */
-
 
   /***********************************************************************
    * kintoneのobjetの形式をkey:valueに変換
@@ -130,6 +114,6 @@ export function kintone() {
   return {
     login,
     logout,
-    getAll
+    getTable
   };
 }
