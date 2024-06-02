@@ -1,29 +1,43 @@
 /**
  * kintoneでのアクセス
  */
-import { ref } from 'vue';
+import crypto from 'crypto-js'
 export function session() {
-  const get = () => {
-    if(window.sessionStorage.getItem('flyhalf_session')==null){
+  /**
+   * 取得
+   * @returns 
+   */
+  const getObj = () => {
+    if (window.sessionStorage.getItem('flyhalf_session') == null) {
       return null
     }
-    return JSON.parse(atob(window.sessionStorage.getItem('flyhalf_session')))
-  }
-  const set = ()=>{
+    const decrypted = crypto.AES.decrypt(window.sessionStorage.getItem('flyhalf_session'), 'flyhalf')
+    return JSON.parse(decrypted.toString(crypto.enc.Utf8))
+  };
+  /**
+   * セット
+   * @param {*} flyhalf_session 
+   */
+  const setObj = (flyhalf_session) => {
+    let base64 = JSON.stringify(flyhalf_session)
+    window.sessionStorage.setItem('flyhalf_session', crypto.AES.encrypt(base64, 'flyhalf').toString())
+  };
+  /**
+   * base64で取得
+   * @returns 
+   */
+  const getBase64 = () => {
+    if (window.sessionStorage.getItem('flyhalf_session') == null) {
+      return null
+    }
     return window.sessionStorage.getItem('flyhalf_session')
-  }
-  const getBase64 = (flyhalf_session) => {
-    if(window.sessionStorage.getItem('flyhalf_session')==null){
-      return null
-    }
-    window.sessionStorage.setItem('flyhalf_session', btoa(JSON.stringify(flyhalf_session)))
-  }
-  const remove = (flyhalf_session) => {
+  };
+  const remove = () => {
     window.sessionStorage.removeItem('flyhalf_session')
-  }
+  };
   return {
-    get,
-    set,
+    getObj,
+    setObj,
     getBase64,
     remove,
   };

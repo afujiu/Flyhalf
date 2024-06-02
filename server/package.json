@@ -5,6 +5,7 @@
   "author": "",
   "dependencies": {
     "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
     "encoding-japanese": "^1.0.30",
     "express": "^4.19.2",
     "request": "^2.88.2"

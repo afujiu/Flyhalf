@@ -15,9 +15,9 @@ account().logout()
 */
 const pushLogin = async () => {
   let result = await account().login(route.query.type, route.query, LoginId.value, password.value)
-  if(result){
-    navigateTo('/selectTeams');
-  }else{
+  if (result) {
+    navigateTo('/selectTeam');
+  } else {
     alert("LoginError")
   }
 }

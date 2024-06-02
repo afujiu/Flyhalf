@@ -11,9 +11,9 @@ const route = useRoute();
           <v-row>
             <v-col class="pa-0 ma-0" cols=12>
               <h>SELECT TEAM</h>
-            </v-col>
+            </v-col>1
             <v-col class="pa-0 ma-0" cols=12>
-                <v-card>aiueo</v-card>
+              {{ account().table.team.getList() }}
             </v-col>
           </v-row>
         </v-container>
