@@ -1,9 +1,7 @@
 <script setup lang="ts">
-  import { ref } from 'vue'
+import { ref } from 'vue'
 </script>
 <template>
-  <h2>Kanban</h2>
+  <h2 class="font-impact">Kanban</h2>
 </template>
-<style scoped>
-
-</style>
+<style scoped></style>

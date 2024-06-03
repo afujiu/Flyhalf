@@ -12,7 +12,7 @@ export const kintone = defineStore(
       setObj,
       getBase64,
       remove
-    }=session()
+    } = session()
     const endPoint = ref('http://localhost:8080')
     /**
      * kintoneでのログイン

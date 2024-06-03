@@ -43,16 +43,16 @@ const pushNewTeam = () => {
                 v-model="password" /></v-col>
             <v-col class="py-5 my-5" cols=12></v-col>
             <v-col class="pa-0 ma-0" md=5 cols=12>
-              <button class="blue em3 " @click="pushLogin()">Login</button>
+              <button class="font-impact blue em3 " @click="pushLogin()">Login</button>
             </v-col>
             <v-col class="pa-0 ma-0" lg=5 cols=12>
-              <button class="yellow em3" @click="pushNewTeam()">New Team</button>
+              <button class="font-impact yellow em3" @click="pushNewTeam()">New Team</button>
             </v-col>
           </v-row>
         </v-container>
       </v-col>
       <v-col md=5 cols=12 class="pa-0 ma-0 pl-5">
-        <p class="text-lg-right">NEWS</p>
+        <p class="font-impact text-lg-right">NEWS</p>
       </v-col>
     </v-row>
   </v-container>
