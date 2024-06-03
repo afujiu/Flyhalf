@@ -7,13 +7,13 @@ import { defineStore } from "pinia";
 export const kintone = defineStore(
   "kintone",
   () => {
-    const endPoint = ref('http://localhost:8080')
     const {
       getObj,
       setObj,
       getBase64,
-      remove,
-    } = session();
+      remove
+    }=session()
+    const endPoint = ref('http://localhost:8080')
     /**
      * kintoneでのログイン
      * 成功 tableオブジェクト
@@ -32,7 +32,6 @@ export const kintone = defineStore(
         password: password,
         teamAppId: param.teamAppId
       })
-      console.log(getObj())
       const data = await post('kintone/team', { auth: getBase64() }, null)
       /**
        * 成功した場合
@@ -59,7 +58,7 @@ export const kintone = defineStore(
      * ログアウト
      */
     const logout = () => {
-      session().remove();
+      remove();
     };
     /**
      * 単一post

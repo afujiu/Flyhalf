@@ -2,15 +2,20 @@
  * kintoneでのアクセス
  */
 import { ref } from 'vue';
-import { session } from '~/composables/session';
 import { kintone } from '~/composables/kintone';
+import { session } from '~/composables/session';
 import { defineStore } from "pinia";
-
 export const account = defineStore(
   "account",
   () => {
-    const table = ref({})
+    const {
+      getObj,
+      setObj,
+      getBase64,
+      remove
+    }=session()
 
+    const table = ref(null)
     /**
      * ログイン
      * @param {*} type 
@@ -39,10 +44,10 @@ export const account = defineStore(
      * ある場合はtrue,タイプでtableをセット
      */
     const checkSession = () => {
-      const session = session().getObj()
+      const session = getObj()
       if (session != null) {
         // table情報がない場合は取得
-        if (table.value == {}) {
+        if (table.value == null) {
           switch (session.type) {
             case 'kintone':
               table.value = kintone().getTable()
@@ -58,7 +63,7 @@ export const account = defineStore(
      * ログアウト
      */
     const logout = () => {
-      session().remove()
+      remove()
     };
 
     return {

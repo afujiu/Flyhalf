@@ -2,7 +2,7 @@
  * kintoneでのアクセス
  */
 import crypto from 'crypto-js'
-export function session() {
+export const session = () => {
   /**
    * 取得
    * @returns 
@@ -41,4 +41,4 @@ export function session() {
     getBase64,
     remove,
   };
-}
+};

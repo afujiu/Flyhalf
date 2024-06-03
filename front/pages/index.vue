@@ -35,7 +35,7 @@ const pushNewTeam = () => {
         <v-container class="pa-0 ma-0">
           <v-row>
             <v-col class="pa-0 ma-0" cols=12>
-              <h>Fly Half</h>
+              <h1>Fly Half</h1>
             </v-col>
             <v-col class="pa-0 ma-0" cols=12><input type="text" class="em2 wi-10em" placeholder="LoginId" size="4"
                 v-model="LoginId" /></v-col>
