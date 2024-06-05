@@ -14,8 +14,10 @@ export const account = defineStore(
       getBase64,
       remove
     }=session()
-
+    const route = useRoute()
     const table = ref(null)
+    const type = ref('')
+    const domain = ref('')
     /**
      * ログイン
      * @param {*} type 
@@ -65,11 +67,21 @@ export const account = defineStore(
     const logout = () => {
       remove()
     };
+    /**
+     * 次ページ
+     * @param {*} page 
+     */
+    const next = (page)=>{
+      navigateTo(`/${route.params.type}/${route.params.domain}/${page}`);
+    }
 
     return {
       table,
+      type,
+      domain,
       login,
       checkSession,
       logout,
+      next
     };
   });

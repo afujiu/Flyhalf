@@ -13,6 +13,8 @@ export const kintone = defineStore(
       getBase64,
       remove
     } = session()
+    const taskList = ref([])
+    const sprintList = ref([])
     const endPoint = ref('http://localhost:8080')
     /**
      * kintoneでのログイン
@@ -25,12 +27,16 @@ export const kintone = defineStore(
      * @returns
      */
     const login = async (type, loginId, password, param) => {
+      let kintoneParam = param.domain.split('-')
+      if(kintoneParam.length<2){
+        return false
+      }
       setObj({
         type: type,
-        domain: param.domain,
+        domain: kintoneParam[0],
         loginId: loginId,
         password: password,
-        teamAppId: param.teamAppId
+        teamAppId: kintoneParam[1]
       })
       const data = await post('kintone/team', { auth: getBase64() }, null)
       /**
@@ -69,12 +75,12 @@ export const kintone = defineStore(
      */
     const post = async (api, headers, body) => {
       return new Promise(resolve => {
-        headers['content-Type'] = 'application/json'
+        headers['Content-Type'] = 'application/json'
         const url = `${endPoint.value}/${api}`
         fetch(url, {
           method: 'POST',
           headers: headers,
-          body: body,
+          body: JSON.stringify(body)
         }).then(response => response.json())
           .then(data => resolve(data))
           .catch(error => console.error('Error:', error));
@@ -99,7 +105,12 @@ export const kintone = defineStore(
         },
         task: {
           get: async (query) => {
-
+            let session = getObj()
+            let data = await post(`kintone/getAll`,{ auth: getBase64() }, {
+              appId:session.team.taskAppId,
+              query:''
+            })
+            return data
           },
           add: async (data) => {
 

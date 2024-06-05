@@ -6,7 +6,10 @@ const route = useRoute();
 const isLoading = ref(false)
 const list = ref([])
 const created = async () => {
-  account().checkSession()
+  if(!account().checkSession()){
+    account().next('/')
+    return
+  }
   let teamList = await account().table.team.getList()
   if (teamList.length == 1) {
     pushTeam(0)
@@ -21,11 +24,9 @@ const created = async () => {
  * @param {*} idx 
  */
 const pushTeam = (idx) => {
-  console.log(idx)
   account().table.team.set(idx)
-  navigateTo('/mainBoard');
+  account().next('mainBoard');
 }
-
 await created()
 </script>
 <template>

@@ -1,10 +1,22 @@
 <script setup lang="ts">
 import { ref } from "vue"
 const menus = ref(["List", "Map", "Kanban", "Sprint", "MyTask"])
-const selectMenuKey = ref("");
+const selectMenuKey = ref("List");
+const route = useRoute();
+const isLoading = ref(false)
+const created = async () => {
+  if(!account().checkSession()){
+    account().next('')
+    return
+  }
+  await account().table.task.get(null)
+  isLoading.value = true
+}
+
+await created()
 </script>
 <template>
-  <span>
+  <span v-if="isLoading">
     <v-card class="menu-card">
       <v-list class="px-0 mx-0">
         <v-list-item v-for="(item, index) in menus">
