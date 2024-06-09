@@ -5,7 +5,7 @@ const selectMenuKey = ref("List");
 const route = useRoute();
 const isLoading = ref(false)
 const created = async () => {
-  if(!account().checkSession()){
+  if (!account().checkSession()) {
     account().next('')
     return
   }
@@ -22,7 +22,7 @@ await created()
         <v-list-item v-for="(item, index) in menus">
           <button @click="selectMenuKey = menus[index]" class="font-impact"
             :class="{ 'selected': selectMenuKey == menus[index] }">{{
-          menus[index] }}</button>
+    menus[index] }}</button>
         </v-list-item>
       </v-list>
     </v-card>

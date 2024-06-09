@@ -28,7 +28,7 @@ export const kintone = defineStore(
      */
     const login = async (type, loginId, password, param) => {
       let kintoneParam = param.domain.split('-')
-      if(kintoneParam.length<2){
+      if (kintoneParam.length < 2) {
         return false
       }
       setObj({
@@ -77,7 +77,7 @@ export const kintone = defineStore(
       return new Promise(resolve => {
         headers['Content-Type'] = 'application/json'
         const url = `${endPoint.value}/${api}`
-        body = (body!=null)?JSON.stringify(body):body
+        body = (body != null) ? JSON.stringify(body) : body
         fetch(url, {
           method: 'POST',
           headers: headers,
@@ -87,6 +87,63 @@ export const kintone = defineStore(
           .catch(error => console.error('Error:', error));
       })
     };
+    /**
+     * キントーンのフォーマット修正
+     * @param {*} results 
+     * @returns 
+     */
+    const formatKintoneList = (results) => {
+      let format = []
+      for (let data of results) {
+        let columns = {}
+        for (const key in data) {
+          //テーブルの場合
+          if (data[key]['type'] != null) {
+            if (data[key]['type'] == 'SUBTABLE') {
+              data[key].value = getSubTable(data[key].value)
+            }
+          }
+          switch (key) {
+            case '$id':
+              columns['id'] = data[key].value
+              break
+            case '作成日時':
+              columns['createDate'] = data[key].value
+              break
+            case '更新日時':
+              columns['updateDate'] = data[key].value
+              break
+            case '作成者':
+              columns['createUser'] = data[key].value
+              break
+            case '更新者':
+              columns['updateUser'] = data[key].value
+              break
+            default:
+              columns[key] = data[key].value
+              break
+          }
+        }
+        format.push(columns)
+      }
+      return format
+    }
+    /**
+     * サブテーブルのフォーマット
+     */
+    const getSubTable = (list) => {
+      let ret = []
+      for (let oneLine of list) {
+        let formatValue = {}
+        formatValue['id'] = oneLine.id
+        let values = oneLine.value
+        for (const valueName in values) {
+          formatValue[valueName] = values[valueName].value
+        }
+        ret.push(formatValue)
+      }
+      return ret
+    }
 
     /**
      * kintoneでのデータ管理関数を返す
@@ -107,7 +164,7 @@ export const kintone = defineStore(
         /**
          * ユーザー一覧取得
          */
-        user:{
+        user: {
           getList: () => {
           },
         },
@@ -119,16 +176,16 @@ export const kintone = defineStore(
            */
           get: async (query) => {
             let session = getObj()
-            let data = await post(`kintone/getAll`,{ auth: getBase64() }, {
-              appId:session.team.taskAppId,
-              query:''
+            let data = await post(`kintone/getAll`, { auth: getBase64() }, {
+              appId: session.team.taskAppId,
+              query: ''
             })
             taskList.value = data
             return data
           },
-          list: ()=>{
+          list: () => {
             console.log(taskList.value)
-            return taskList.value
+            return formatKintoneList(taskList.value)
           },
           add: async (data) => {
 
@@ -138,6 +195,72 @@ export const kintone = defineStore(
           },
           delete: async (id) => {
 
+          },
+          template: () => {
+            return {
+              comments: {
+                type: "SUBTABLE",
+                value: []
+              },
+              type: {
+                type: "SINGLE_LINE_TEXT",
+                value: ""
+              },
+              version: {
+                type: "NUMBER",
+                value: ""
+              },
+              planDate: {
+                type: "DATE",
+                value: null
+              },
+              point: {
+                type: "NUMBER",
+                value: ""
+              },
+              parentId: {
+                type: "NUMBER",
+                value: ""
+              },
+              compDate: {
+                type: "DATE",
+                value: null
+              },
+              teamId: {
+                type: "NUMBER",
+                value: ""
+              },
+              name: {
+                type: "SINGLE_LINE_TEXT",
+                value: ""
+              },
+              user: {
+                type: "USER_SELECT",
+                value: []
+              },
+              status: {
+                type: "SINGLE_LINE_TEXT",
+                value: ""
+              },
+            }
+          },
+          templateTable: () => {
+            return { id: "", date: "", comment_user: [], text: "" }
+          },
+          taskTypeList: () => {
+            return [
+              { key: 'goal', name: 'GOAL', color: '#FF0000' },
+              { key: 'pbl', name: 'PBL', color: '#FF6347' },
+              { key: 'sbl', name: 'SBL', color: '#E02B47' },
+              { key: 'task', name: 'TASK', color: '#317CC8' },
+            ]
+          },
+          taskStatusList: () => {
+            return [
+              { key: 'todo', name: 'TODO', color: '#FF0000' },
+              { key: 'progress', name: 'PROGRESS', color: '#FF6347' },
+              { key: 'complate', name: 'CO<PLATE', color: '#E02B47' },
+            ]
           }
         },
         sprint: {
@@ -148,14 +271,14 @@ export const kintone = defineStore(
            */
           get: async (query) => {
             let session = getObj()
-            let data = await post(`kintone/getAll`,{ auth: getBase64() }, {
-              appId:session.team.sprintAppId,
-              query:''
+            let data = await post(`kintone/getAll`, { auth: getBase64() }, {
+              appId: session.team.sprintAppId,
+              query: ''
             })
             sprintList.value = data
             return data
           },
-          list: ()=>{
+          list: () => {
             return sprintList.value
           },
           add: async (data) => {
@@ -166,8 +289,71 @@ export const kintone = defineStore(
           },
           delete: async (id) => {
 
+          },
+
+          template: () => {
+            return {
+              comments: {
+                type: "SUBTABLE",
+                value: []
+              },
+              type: {
+                type: "SINGLE_LINE_TEXT",
+                value: ""
+              },
+              version: {
+                type: "NUMBER",
+                value: ""
+              },
+              planDate: {
+                type: "DATE",
+                value: null
+              },
+              point: {
+                type: "NUMBER",
+                value: ""
+              },
+              parentId: {
+                type: "NUMBER",
+                value: ""
+              },
+              compDate: {
+                type: "DATE",
+                value: null
+              },
+              teamId: {
+                type: "NUMBER",
+                value: ""
+              },
+              name: {
+                type: "SINGLE_LINE_TEXT",
+                value: ""
+              },
+              user: {
+                type: "USER_SELECT",
+                value: []
+              },
+              status: {
+                type: "SINGLE_LINE_TEXT",
+                value: ""
+              },
+              $id: {
+                type: "__ID__",
+                value: ""
+              }
+            }
+          },
+          templateTable: () => {
+            return { id: "", type: "", date: "", comment_user: [], text: "" }
+          },
+          commentTypeList: () => {
+            return [
+              { key: 'keep', name: 'KEEP', color: '#00FF00' },
+              { key: 'problem', name: 'PROBLEM', color: '#FF0000' },
+              { key: 'try', name: 'TRY', color: '#0000FF' },
+            ]
           }
-        }
+        },
       }
     }
 
