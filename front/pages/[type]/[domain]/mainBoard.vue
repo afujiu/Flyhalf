@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ref } from "vue"
 const menus = ref(["List", "Map", "Kanban", "Sprint", "MyTask"])
 const selectMenuKey = ref("List");
@@ -10,9 +10,9 @@ const created = async () => {
     return
   }
   await account().table.task.get(null)
+  await account().table.sprint.get(null)
   isLoading.value = true
 }
-
 await created()
 </script>
 <template>

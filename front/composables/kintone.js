@@ -77,10 +77,11 @@ export const kintone = defineStore(
       return new Promise(resolve => {
         headers['Content-Type'] = 'application/json'
         const url = `${endPoint.value}/${api}`
+        body = (body!=null)?JSON.stringify(body):body
         fetch(url, {
           method: 'POST',
           headers: headers,
-          body: JSON.stringify(body)
+          body: body
         }).then(response => response.json())
           .then(data => resolve(data))
           .catch(error => console.error('Error:', error));
@@ -103,14 +104,31 @@ export const kintone = defineStore(
             setObj(session)
           },
         },
+        /**
+         * ユーザー一覧取得
+         */
+        user:{
+          getList: () => {
+          },
+        },
         task: {
+          /**
+           * タスク取得
+           * @param {*} query 
+           * @returns 
+           */
           get: async (query) => {
             let session = getObj()
             let data = await post(`kintone/getAll`,{ auth: getBase64() }, {
               appId:session.team.taskAppId,
               query:''
             })
+            taskList.value = data
             return data
+          },
+          list: ()=>{
+            console.log(taskList.value)
+            return taskList.value
           },
           add: async (data) => {
 
@@ -123,8 +141,22 @@ export const kintone = defineStore(
           }
         },
         sprint: {
+          /**
+           * スプリント取得
+           * @param {*} query 
+           * @returns 
+           */
           get: async (query) => {
-
+            let session = getObj()
+            let data = await post(`kintone/getAll`,{ auth: getBase64() }, {
+              appId:session.team.sprintAppId,
+              query:''
+            })
+            sprintList.value = data
+            return data
+          },
+          list: ()=>{
+            return sprintList.value
           },
           add: async (data) => {
 
