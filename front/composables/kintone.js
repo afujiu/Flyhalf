@@ -177,7 +177,7 @@ export const kintone = defineStore(
           get: async (query) => {
             let session = getObj()
             let data = await post(`kintone/getAll`, { auth: getBase64() }, {
-              appId: session.team.taskAppId,
+              appId: session.team.taskAppId.value,
               query: ''
             })
             taskList.value = data
@@ -249,17 +249,17 @@ export const kintone = defineStore(
           },
           taskTypeList: () => {
             return [
-              { key: 'goal', name: 'GOAL', color: '#FF0000' },
-              { key: 'pbl', name: 'PBL', color: '#FF6347' },
-              { key: 'sbl', name: 'SBL', color: '#E02B47' },
-              { key: 'task', name: 'TASK', color: '#317CC8' },
+              { key: 'goal', name:'ゴール', class: 'goal' },
+              { key: 'pbl', name:'プロダクトBL', class: 'pbl' },
+              { key: 'sbl', name:'スプリントBL', class: 'sbl' },
+              { key: 'task', name:'タスク', class: 'task' },
             ]
           },
           taskStatusList: () => {
             return [
-              { key: 'todo', name: 'TODO', color: '#FF0000' },
-              { key: 'progress', name: 'PROGRESS', color: '#FF6347' },
-              { key: 'complate', name: 'CO<PLATE', color: '#E02B47' },
+              { key: 'todo', name: 'TODO', class: 'todo' },
+              { key: 'progress', name: 'PROGRESS', class: 'progress' },
+              { key: 'complate', name: 'CO<PLATE', class: 'complate' },
             ]
           }
         },
@@ -272,7 +272,7 @@ export const kintone = defineStore(
           get: async (query) => {
             let session = getObj()
             let data = await post(`kintone/getAll`, { auth: getBase64() }, {
-              appId: session.team.sprintAppId,
+              appId: session.team.sprintAppId.value,
               query: ''
             })
             sprintList.value = data
