@@ -172,6 +172,46 @@ expressKintone = (app) => {
     }
     func(res, 0, [])
   })
+
+  /**
+   * kintone
+   * 修正
+   */
+  app.post(`/kintone/update`, async (req, res, next) => {
+    const base64 = crypto.AES.decrypt(req.headers.auth, 'flyhalf')
+    const auth = JSON.parse(base64.toString(crypto.enc.Utf8))
+    const domain = auth.domain
+    const logindId = auth.loginId
+    const password = auth.password
+    const appId = req.body.appId
+    const query = req.body.query
+    let func = (res, offset, list) => {
+      request(
+        {
+          url: `https://${domain}.cybozu.com/k/v1/record.json`,
+          method: 'PUT',
+          headers: {
+            'Content-type': `application/json`,
+            'X-Cybozu-Authorization': Buffer.from(`${logindId}:${password}`).toString('base64'),
+          },
+          json: true,
+          body: {
+            'query': `${query} limit ${limit} offset ${(offset * limit)}`,
+            'app': appId,
+          }
+        }, (err, req, data) => {
+          list = list.concat(formatKintoneList(data.records))
+          if (data.records.length != limit || offset > 20) {
+            res.json(list)
+            res.end()
+          } else {
+            func(res, offset + 1, list)
+          }
+        }
+      )
+    }
+    func(res, 0, [])
+  })
 }
 module.exports = {
   expressKintone
