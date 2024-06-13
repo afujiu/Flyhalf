@@ -7,6 +7,13 @@ const create = async () => {
   sprintList.value = account().table.sprint.list()
 }
 create()
+/**
+ * リスト追加
+ */
+const add=()=>{
+  const template = account().table.task.template()
+  taskList.value.push(template)
+}
 </script>
 <template>
   <h2 class="font-impact">List</h2>
@@ -17,6 +24,11 @@ create()
         :key="idx">
         <task-line v-model="taskList[idx]" />
       </div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-btn @click="add">追加</v-btn>
       </v-col>
     </v-row>
   </v-container>

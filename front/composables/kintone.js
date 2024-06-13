@@ -185,61 +185,61 @@ export const kintone = defineStore(
           },
           list: () => {
             console.log(taskList.value)
-            return formatKintoneList(taskList.value)
+            return taskList.value
           },
-          add: async (data) => {
-
+          add: async (query) => {
+            let session = getObj()
+            let data = await post(`kintone/insert`, { auth: getBase64() }, {
+              appId: session.team.taskAppId.value,
+              query: JSON.stringify(query)
+            })
           },
-          update: async (id, data) => {
-
+          update: async (query) => {
+            let session = getObj()
+            let data = await post(`kintone/update`, { auth: getBase64() }, {
+              appId: session.team.taskAppId.value,
+              query: JSON.stringify(query)
+            })
           },
           delete: async (id) => {
 
           },
           template: () => {
             return {
+              /*
               comments: {
                 type: "SUBTABLE",
                 value: []
               },
+              /**/
               type: {
-                type: "SINGLE_LINE_TEXT",
                 value: ""
               },
               version: {
-                type: "NUMBER",
                 value: ""
               },
               planDate: {
-                type: "DATE",
-                value: null
+                value: '2024-06-15'
               },
               point: {
-                type: "NUMBER",
                 value: ""
               },
               parentId: {
-                type: "NUMBER",
                 value: ""
               },
               compDate: {
-                type: "DATE",
-                value: null
+                value: '2024-06-15'
               },
               teamId: {
-                type: "NUMBER",
                 value: ""
               },
-              name: {
-                type: "SINGLE_LINE_TEXT",
-                value: ""
-              },
+              name: {value:"aaa"},
+              /**/
               user: {
-                type: "USER_SELECT",
-                value: []
-              },
+                value:[{code: "", name: ""}
+                ]},
+               /**/
               status: {
-                type: "SINGLE_LINE_TEXT",
                 value: ""
               },
             }
@@ -307,7 +307,7 @@ export const kintone = defineStore(
               },
               planDate: {
                 type: "DATE",
-                value: null
+                value: '2024-06-14'
               },
               point: {
                 type: "NUMBER",
@@ -319,7 +319,7 @@ export const kintone = defineStore(
               },
               compDate: {
                 type: "DATE",
-                value: null
+                value:'2024-06-14'
               },
               teamId: {
                 type: "NUMBER",

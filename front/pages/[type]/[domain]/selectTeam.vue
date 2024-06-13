@@ -20,7 +20,7 @@ const created = async () => {
 }
 
 /**
- * チーム選択
+ * チーム選択y
  * @param {*} idx 
  */
 const pushTeam = (idx) => {

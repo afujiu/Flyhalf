@@ -146,33 +146,31 @@ expressKintone = (app) => {
     const logindId = auth.loginId
     const password = auth.password
     const appId = req.body.appId
-    const query = req.body.query
-    let func = (res, offset, list) => {
-      request(
-        {
-          url: `https://${domain}.cybozu.com/k/v1/record.json`,
-          method: 'POST',
-          headers: {
-            'Content-type': `application/json`,
-            'X-Cybozu-Authorization': Buffer.from(`${logindId}:${password}`).toString('base64'),
-          },
-          json: true,
-          body: {
-            'query': `${query} limit ${limit} offset ${(offset * limit)}`,
-            'app': appId,
-          }
-        }, (err, req, data) => {
-          list = list.concat(formatKintoneList(data.records))
-          if (data.records.length != limit || offset > 20) {
-            res.json(list)
+    const query = JSON.parse(req.body.query)
+    request(
+      {
+        url: `https://${domain}.cybozu.com/k/v1/records.json`,
+        method: 'POST',
+        headers: {
+          'Content-type': `application/json`,
+          'X-Cybozu-Authorization': Buffer.from(`${logindId}:${password}`).toString('base64'),
+        },
+        json: true,
+        body: {
+          'records':[query],
+          'app': appId,
+        }
+      }, (err, req, data) => {
+        if (err == null) {
+          if (data['records'] != undefined) {
+            res.json({ state: "suc", result: data.records })
             res.end()
-          } else {
-            func(res, offset + 1, list)
+            return
           }
         }
-      )
-    }
-    func(res, 0, [])
+        res.json({ state: "err", result: err })
+      }
+    )
   })
 
   /**
@@ -186,35 +184,45 @@ expressKintone = (app) => {
     const logindId = auth.loginId
     const password = auth.password
     const appId = req.body.appId
-    const query = req.body.query
-    let func = (res, offset, list) => {
-      request(
-        {
-          url: `https://${domain}.cybozu.com/k/v1/record.json`,
-          method: 'PUT',
-          headers: {
-            'Content-type': `application/json`,
-            'X-Cybozu-Authorization': Buffer.from(`${logindId}:${password}`).toString('base64'),
-          },
-          json: true,
-          body: {
-            'query': `${query} limit ${limit} offset ${(offset * limit)}`,
-            'app': appId,
-          }
-        }, (err, req, data) => {
-          list = list.concat(formatKintoneList(data.records))
-          if (data.records.length != limit || offset > 20) {
-            res.json(list)
+    const query = JSON.parse(req.body.query)
+    const id = query['$id'].value
+    delete query.$id
+    delete query['レコード番号']
+    delete query['更新者']
+    delete query['作成者']
+    delete query['$revision']
+    delete query['更新日時']
+    delete query['作成日時']
+    request(
+      {
+        url: `https://${domain}.cybozu.com/k/v1/record.json`,
+        method: 'PUT',
+        headers: {
+          'Content-type': `application/json`,
+          'X-Cybozu-Authorization': Buffer.from(`${logindId}:${password}`).toString('base64'),
+        },
+        json: true,
+        body: {
+          'record':query,
+          'id':id,
+          'app': appId,
+        }
+      }, (err, req, data) => {
+        console.log('*****')
+        console.log(data)
+        if (err == null) {
+          if (data['records'] != undefined) {
+            res.json({ state: "suc", result: data.records })
             res.end()
-          } else {
-            func(res, offset + 1, list)
+            return
           }
         }
-      )
-    }
-    func(res, 0, [])
+        res.json({ state: "err", result: err })
+      }
+    )
   })
 }
+
 module.exports = {
   expressKintone
 }
