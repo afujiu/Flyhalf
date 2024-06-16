@@ -1,15 +1,16 @@
 <script setup>
 import { ref } from 'vue'
 import { account } from '~/composables/account';
+import { chat } from '~/composables/chat';
 const route = useRoute();
 const LoginId = ref("")
 const password = ref("")
-
+const userid = ref("")
 /**
  * ログアウト
  */
 account().logout()
-
+chat().connect(userid.value)
 /**
 * ログイン
 */
@@ -25,7 +26,11 @@ const pushLogin = async () => {
  * チーム作成
  */
 const pushNewTeam = () => {
-  navigateTo('/newTeam/kintone');
+  chat().send("hoge", "fuga")
+  //navigateTo('/newTeam/kintone');
+}
+const connectChat = () => {
+  chat().connect(userid.value)
 }
 </script>
 <template>
@@ -47,6 +52,11 @@ const pushNewTeam = () => {
             </v-col>
             <v-col class="pa-0 ma-0" lg=5 cols=12>
               <button class="font-impact yellow em3" @click="pushNewTeam()">New Team</button>
+            </v-col>
+
+            <v-col>
+              <input type="text" class="em2 wi-10em" v-model="userid" />
+              <button class="font-impact yellow em3" @click="connectChat()">コネクト</button>
             </v-col>
           </v-row>
         </v-container>

@@ -103,7 +103,6 @@ expressKintone = (app) => {
     const password = auth.password
     const appId = req.body.appId
     const query = req.body.query
-    console.log(appId)
     let limit = 500
     let func = (res, offset, list) => {
       request(
@@ -120,7 +119,6 @@ expressKintone = (app) => {
             'app': appId,
           }
         }, (err, req, data) => {
-          console.log(data)
           list = list.concat(data.records)
           if (data.records.length != limit || offset > 20) {
             res.json(list)
@@ -133,7 +131,6 @@ expressKintone = (app) => {
     }
     func(res, 0, [])
   })
-
 
   /**
    * kintone
@@ -157,7 +154,7 @@ expressKintone = (app) => {
         },
         json: true,
         body: {
-          'records':[query],
+          'records': [query],
           'app': appId,
         }
       }, (err, req, data) => {
@@ -203,8 +200,8 @@ expressKintone = (app) => {
         },
         json: true,
         body: {
-          'record':query,
-          'id':id,
+          'record': query,
+          'id': id,
           'app': appId,
         }
       }, (err, req, data) => {
