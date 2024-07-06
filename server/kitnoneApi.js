@@ -1,4 +1,4 @@
-const request = require(`request`)
+const 0 = require(`request`)
 const crypto = require(`crypto-js`)
 
 /**
@@ -11,7 +11,6 @@ const crypto = require(`crypto-js`)
  * kintone用のAPI
  */
 expressKintone = (app) => {
-
   /**
    * kintone
    * チームを取得

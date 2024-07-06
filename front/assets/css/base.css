@@ -1,0 +1,182 @@
+@font-face {
+    font-family: 'chalk-font';
+    src: url(/assets/font/Chalk-JP.otf);
+}
+
+@font-face {
+    font-family: 'chalks-font';
+    src: url(/assets/font/Chalk-S-JP.otf);
+}
+
+@font-face {
+    font-family: 'hui-font';
+    src: url(/assets/font/HuiFont29.ttf);
+}
+
+body {
+    overflow: hidden;
+    color: #FFFFFFEE;
+    background: #004000;
+    padding: 0;
+    font-size: 1em;
+    font-family: "chalk-font";
+    font-weight: 900;
+}
+
+input {
+    font-family: "chalks-font";
+    color: white;
+    background: transparent !important;
+    border: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+select {
+    font-family: "chalks-font";
+    color: white;
+    background: black;
+    background: transparent !important;
+    border: none;
+    outline: none;
+}
+
+select option {
+    background-color: white;
+    color: black;
+}
+
+.card {
+    font-family: "hui-font";
+    background: white;
+    color: black;
+    border-radius: 2px 2px 10px 2px;
+    box-shadow: 0px 5px 4px 4px rgba(0, 0, 0, 0.7);
+}
+
+#password-input {
+    color: black;
+    font-family: Georgia;
+}
+
+/*******************
+カード
+********************/
+.card input {
+    color: black;
+    font-family: "hui-font";
+    border-bottom: 2px dashed;
+    border-color: rgba(0, 0, 0, 0.5);
+}
+
+.card input:focus {
+    border: none;
+    outline: none;
+    border-bottom: solid 1px;
+    border-color: rgba(0, 0, 0, 1);
+}
+
+.card input:-webkit-autofill {
+    color: white;
+    box-shadow: 0 0 0 1000px white inset;
+}
+
+/*******************
+ボタン
+********************/
+.btn {
+    padding: 0.5em;
+    padding-left: 1em;
+    padding-right: 1.7em;
+    transform: rotate(-5deg);
+    border-radius: 5px 5px 0px 5px;
+    box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.btn:hover,
+.btn:focus {
+    transform: rotate(0deg);
+    box-shadow: 2px 2px 0.5px 1px rgba(0, 0, 0, 0.5);
+    transition: transform 100ms;
+    transition: box-shadow 100ms;
+    opacity: 0.9;
+    outline: none;
+}
+
+.btn:active {
+    padding-right: 0em;
+    margin-right: 1.7em;
+    box-shadow: 4px 1px 0px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 5px 0px 0px 5px;
+    opacity: 0.8;
+    transition: margin-right 500ms ease, padding-right 500ms ease, box-shadow 50ms ease-out, opacity 50ms ease-out;
+
+
+}
+
+.btn.yellow {
+    color: black;
+    background: rgb(255, 242, 0);
+}
+
+.btn.red {
+    color: white;
+    background: rgb(255, 13, 0);
+}
+
+/*******************
+メニューセレクト
+********************/
+.menu-select {
+    border: none;
+    border-bottom: 2px dashed;
+    border-color: black;
+    color: black;
+    background: transparent;
+    display: block;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    width: 100%;
+}
+
+.menu-select:hover,
+.menu-select:focus {
+    z-index: 999;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.menu-select.selected {
+    transform: rotate(-7deg);
+    z-index: 999;
+    color: white;
+    transition: transform 100ms;
+    background: rgba(0, 0, 0, 1);
+}
+
+/*******************
+色
+********************/
+.color-pink {
+    color: rgb(255, 139, 160);
+}
+
+.color-yellow {
+    color: yellow;
+}
+
+.color-blue {
+    color: rgb(117, 121, 255);
+}
+
+/*******************
+ドラッガー
+********************/
+.draggable {
+    cursor: grab;
+}

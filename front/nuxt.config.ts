@@ -3,13 +3,6 @@ import vuetify from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
-  css: [
-    "assets/css/main.css",
-    "assets/css/color.css",
-    "assets/css/pc.css",
-    "assets/css/tablet.css",
-    "assets/css/phone.css"
-  ],
   runtimeConfig: {
     public: {
       apiUrl: 'http://localhost:8080',
@@ -74,4 +67,9 @@ export default defineNuxtConfig({
       ]
     }
   },
+  css: [
+    'vuetify/styles', // Vuetifyのスタイルをインポート
+    '@mdi/font/css/materialdesignicons.css', // アイコンフォントをインポート
+    "assets/css/base.css",
+  ],
 })
