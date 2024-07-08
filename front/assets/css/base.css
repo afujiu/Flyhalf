@@ -154,9 +154,11 @@ select option {
 .menu-select.selected {
     transform: rotate(-7deg);
     z-index: 999;
-    color: white;
+    color: black;
     transition: transform 100ms;
-    background: rgba(0, 0, 0, 1);
+    box-shadow: 4px 1px 0px 1px rgba(0, 0, 0, 0.5);
+    border-color: transparent;
+    background: yellow;
 }
 
 /*******************

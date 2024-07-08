@@ -3,7 +3,7 @@
 | key | name | type | detail |
 |:--|:--|:--|:--|
 | id | ユニークキー | number | ユニークキー |
-| orderId | 並び順 | number | ユニークキー |
+| beforeId | 並び順調整ID | number | ユニークキー |
 | deteleDate | 削除日時 | string datetime | YYYY-MM-DDTHH:MM:SSZ 削除の場合は空白 |
 | title | タイトル | string | 1行タイトル |
 | version | スプリント | number | スプリントID |
@@ -23,7 +23,7 @@
 | key | name | type | detail |
 |:--|:--|:--|:--|
 | id | ユニークキー | number | ユニークキー |
-| orderId | 並び順 | number | ユニークキー |
+| beforeId | 並び順調整ID | number | ユニークキー |
 | deteleDate | 削除日時 | string datetime | YYYY-MM-DDTHH:MM:SSZ 削除の場合は空白 |
 | title | タイトル | string | 1行タイトル |
 | contents | 説明 | richText | [{user:string,date:datetime,text:string}] |
