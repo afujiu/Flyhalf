@@ -21,6 +21,20 @@ onMounted(() => {
         <v-contaienr class="pa-0 ma-0">
             <v-row class="pa-0 ma-0">
                 <v-col class="pa-0 ma-0" cols="12">
+                    <pt-magnet color="yellow">
+                        <div class="card">
+                            <v-container>
+                                <v-row>
+                                    <v-col cols="12">削除</v-col>
+                                    <v-col cols="12"></v-col>
+                                    <v-col cols="12"></v-col>
+                                    <v-col cols="12"></v-col>
+                                    <v-col cols="12"></v-col>
+                                    <v-col cols="12"></v-col>
+                                </v-row>
+                            </v-container>
+                        </div>
+                    </pt-magnet>
                     <select v-model="localModel.type">
                         <option value="goal">ゴール</option>
                         <option value="pbl">プロダクトBL</option>
@@ -41,7 +55,7 @@ onMounted(() => {
 </template>
 <style>
 .list-one-line-border * {
-    font-size: 0.9em;
+    font-size: 12px;
 }
 
 .list-one-line-border .one-line-input {

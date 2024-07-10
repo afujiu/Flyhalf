@@ -41,7 +41,7 @@ onMounted(() => {
 </template>
 <style>
 .list-one-line-border * {
-    font-size: 0.9em;
+    font-size: 12px;
 }
 
 .list-one-line-border .one-line-input {

@@ -24,7 +24,7 @@ const pushLogin = async () => {
   <v-container align="center" justify="center" v-if="isLoading">
     <v-row>
       <v-col cols="12">
-        <h1 style="font-size:4em;">FlyHalf</h1>
+        <h1 style="font-size:64px;">FlyHalf</h1>
       </v-col>
       <v-col cols="12">
         <div class="card login-card">
@@ -68,7 +68,7 @@ const pushLogin = async () => {
 .login-card input {
   padding-left: 1em;
   padding-right: 1em;
-  font-size: 1.5em;
+  font-size: 30px;
   width: 100%;
 }
 </style>

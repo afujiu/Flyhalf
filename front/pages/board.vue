@@ -22,7 +22,7 @@ const pushLogin = async () => {
   <v-container v-if="isLoading" class="pa-0 ma-0">
     <v-row>
       <v-col cols="12" align="center" justify="center" class="pa-0 ma-0">
-        <h1 style="font-size:4em;">FlyHalf</h1>
+        <h1 style="font-size:64px;">FlyHalf</h1>
       </v-col>
       <v-col cols="2" class="pa-0 ma-0">
         <div class="card menu">
