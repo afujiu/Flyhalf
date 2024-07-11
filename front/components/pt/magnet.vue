@@ -16,7 +16,7 @@ watch(localModel, (newValue) => {
 onMounted(() => {
 })
 const pushButton =()=>{
-    localModel.value =true
+    localModel.value =!localModel.value
     emit('update:modelValue', localModel.value);
 }
 const close = ()=>{
@@ -35,12 +35,11 @@ const onClass = ()=>{
 <template>
     <span class="magnet">
         <button class="magnet" :class="onClass()"
-            @pointerdown="pushButton"
             @click="pushButton"
         ></button>
             <div class="shadow"
                 v-if="localModel"
-                @click.stop="close()"
+                @pointerdown.stop="close()"
             >
             </div>
             <span v-if="localModel" class="magnet-card" ><slot /></span>
@@ -100,7 +99,7 @@ const onClass = ()=>{
         position:absolute;
         display:inline-block;
         z-index:990;
-        animation: magnet-card-slide 500ms;
+        animation: magnet-card-slide 400ms;
         transform-origin:top left;
     }
 

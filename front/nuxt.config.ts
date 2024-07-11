@@ -16,7 +16,11 @@ export default defineNuxtConfig({
       config.plugins!.push(vuetify())
     },
   },
-  modules: ['@pinia/nuxt', '@vite-pwa/nuxt'],
+  modules: [
+    '@pinia/nuxt',
+    '@vite-pwa/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
+  ],
   pwa: {
     registerType: "autoUpdate", // 多分なくてもよい
     manifest: {

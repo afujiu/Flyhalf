@@ -3,9 +3,11 @@
 | key | name | type | detail |
 |:--|:--|:--|:--|
 | id | ユニークキー | number | ユニークキー |
+| teamKey | チームキー | string | チームキー |
 | beforeId | 並び順調整ID | number | ユニークキー |
 | deteleDate | 削除日時 | string datetime | YYYY-MM-DDTHH:MM:SSZ 削除の場合は空白 |
 | title | タイトル | string | 1行タイトル |
+| tags | タグ | string | カンマ区切り |
 | version | スプリント | number | スプリントID |
 | contents | 説明 | richText | [{user:string,date:datetime,text:string}] |
 | type | タスク種類 | string | 'goal','pbl','sbl','task' |
@@ -23,10 +25,24 @@
 | key | name | type | detail |
 |:--|:--|:--|:--|
 | id | ユニークキー | number | ユニークキー |
+| teamKey | チームキー | string | チームキー |
 | beforeId | 並び順調整ID | number | ユニークキー |
 | deteleDate | 削除日時 | string datetime | YYYY-MM-DDTHH:MM:SSZ 削除の場合は空白 |
 | title | タイトル | string | 1行タイトル |
 | contents | 説明 | richText | [{user:string,date:datetime,text:string}] |
 | startDate | 開始日 | string datetime | YYYY-MM-DDTHH:MM:SSZ|
 | endDate | 終了日 | string datetime | YYYY-MM-DDTHH:MM:SSZ|
-| kpt | KPT | array{object} | [{user:string,date:datetime,type:string[keep,problem,try],text:string}] |
+| kpt | KPT | array{object} | [{user:string,date:datetime,| type:string[keep,problem,try],text:string}] |
+
+## User
+| key | name | type | detail |
+|:--|:--|:--|:--|
+| id | ユニークキー | number | ユニークキー |
+| teamKey | チームキー | string | チームキー |
+| loginid | ログインID | string | ログインID |
+| password | パスワード | string | 「ログインID+":"+平文パスワード」のsha256 |
+| lastName | 苗字 | string | 苗字 |
+| firstName | 名前 | string | 名前 |
+| role | 権限 | string | [read,write,admin] |
+| deteleDate | 削除日時 | string datetime | YYYY-MM-DDTHH:MM:SSZ 削除の場合は空白 |
+
