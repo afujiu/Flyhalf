@@ -14,6 +14,7 @@
 }
 
 body {
+    font-family: 'chalks-font';
     overflow: hidden;
     color: #FFFFFFEE;
     background: #004000;
@@ -22,6 +23,9 @@ body {
     font-family: "chalk-font";
     font-weight: 900;
 }
+
+/** padding ******************************************/
+/*****************************************************/
 
 /**色*************************************************/
 /*****************************************************/
@@ -32,9 +36,9 @@ body {
     color: yellow;
 }
 
-.yellow-bg{
-    color:black;
-    background:yellow;
+.yellow-bg {
+    color: black;
+    background: yellow;
 }
 
 /*****************
@@ -44,9 +48,9 @@ body {
     color: rgb(255, 139, 160);
 }
 
-.pink-bg{
-    color:black;
-    background:rgb(255, 139, 160);
+.pink-bg {
+    color: black;
+    background: rgb(255, 139, 160);
 }
 
 /*****************
@@ -55,10 +59,12 @@ body {
 .blue-color {
     color: rgb(117, 121, 255);
 }
-.blue-bg{
-    color:black;
+
+.blue-bg {
+    color: white;
     background: rgb(117, 121, 255);
 }
+
 /*****************************************************/
 
 

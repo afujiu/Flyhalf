@@ -3,44 +3,36 @@
  * カード
  */
 const propsValue = defineProps({
-    modelValue: Boolean,
-    color:String,
+    width: { type: String, default: null },
+    cls: { type: String, default: null }
 });
+
+const onClass = () => {
+    return propsValue.cls
+}
+const onStyle = () => {
+    let style = ''
+    if (propsValue.width != null) {
+        style += `width:${propsValue.width};`
+    }
+    return style
+}
+
 </script>
 <template>
-    <div class="pt-card">
+    <div class="pt-card" :style="onStyle()" :class="onClass()">
         <slot></slot>
     </div>
 </template>
 <style>
-
 /*******************
 カード
 ********************/
-.card input {
-    color: black;
+.pt-card {
     font-family: "hui-font";
-    border-bottom: 2px dashed;
-    border-color: rgba(0, 0, 0, 0.5);
-}
-
-.card input:focus {
-    border: none;
-    outline: none;
-    border-bottom: solid 1px;
-    border-color: rgba(0, 0, 0, 1);
-}
-
-.card input:-webkit-autofill {
-    color: white;
-    box-shadow: 0 0 0 1000px white inset;
-}
-
-.card {
-    font-family: "hui-font";
-    background: white;
+    background: rgba(255, 255, 255, 0.9);
     color: black;
-    border-radius: 2px 2px 10px 2px;
-    box-shadow: 0px 5px 4px 4px rgba(0, 0, 0, 0.7);
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0px 2px 0px 4px rgba(0, 0, 0, 0.9);
 }
 </style>

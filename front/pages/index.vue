@@ -16,7 +16,7 @@ created()
  * ログイン
  */
 const pushLogin = async () => {
-  alert('blick')
+  console.log('blick')
   //router.push('/board')
 }
 
@@ -28,12 +28,24 @@ const pushLogin = async () => {
         <h1 style="font-size:64px;">FlyHalf</h1>
       </v-col>
       <v-col cols="12">
-        <pt-btn
-        color="yellow-bg"
-        @click="pushLogin">テスト</pt-btn>
+        {{ loginid }}
+        <pt-textbox v-model="loginid" />
+      </v-col>
+      <v-col cols="12">
+        <pt-card width="16em">
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <pt-textbox v-model="loginid" />
+              </v-col>
+              <v-col cols="12">
+                <pt-btn cls="yellow-bg py-1" @click="pushLogin">ログイン</pt-btn>
+              </v-col>
+            </v-row>
+          </v-container>
+        </pt-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
-<style>
-</style>
+<style></style>
