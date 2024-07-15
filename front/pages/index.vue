@@ -16,7 +16,8 @@ created()
  * ログイン
  */
 const pushLogin = async () => {
-  router.push('/board')
+  alert('blick')
+  //router.push('/board')
 }
 
 </script>
@@ -27,48 +28,12 @@ const pushLogin = async () => {
         <h1 style="font-size:64px;">FlyHalf</h1>
       </v-col>
       <v-col cols="12">
-        <div class="card login-card">
-          <v-container class="px-0 mx-0">
-            <v-row>
-              <v-col cols="12" class="px-0 mx-0 py-0 my-0  pl-5 text-left">
-                テナントID
-              </v-col>
-              <v-col cols="12">
-                <input type="text" name="domain" />
-              </v-col>
-              <v-col cols="12" class="px-0 mx-0 py-0 my-0  pl-5 text-left">
-                ログインID
-              </v-col>
-              <v-col cols="12">
-                <input type="text" v-model="loginid" name="loginid" />
-              </v-col>
-              <v-col cols="12" class="px-0 mx-0 py-0 my-0  pl-5 text-left">
-                パスワード
-              </v-col>
-              <v-col cols="12">
-                <input type="password" v-model="password" name="password" id="password-input" />
-              </v-col>
-              <v-col cols="12">
-                <button class="btn yellow" @click="pushLogin">ログイン</button>
-              </v-col>
-            </v-row>
-          </v-container>
-        </div>
+        <pt-btn
+        color="yellow-bg"
+        @click="pushLogin">テスト</pt-btn>
       </v-col>
     </v-row>
   </v-container>
 </template>
 <style>
-.login-card {
-  min-width: 300px;
-  min-height: 300px;
-  max-width: 30vw;
-}
-
-.login-card input {
-  padding-left: 1em;
-  padding-right: 1em;
-  font-size: 30px;
-  width: 100%;
-}
 </style>

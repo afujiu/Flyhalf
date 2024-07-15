@@ -78,4 +78,39 @@ const pushLogin = async () => {
     left: 1em;
   }
 }
+
+/*******************
+メニューセレクト
+********************/
+.menu-select {
+    border: none;
+    border-bottom: 2px dashed;
+    border-color: black;
+    color: black;
+    background: transparent;
+    display: block;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    width: 100%;
+}
+
+.menu-select:hover,
+.menu-select:focus {
+    z-index: 999;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.menu-select.selected {
+    transform: rotate(-7deg);
+    z-index: 999;
+    color: black;
+    transition: transform 100ms;
+    box-shadow: 4px 1px 0px 1px rgba(0, 0, 0, 0.5);
+    border-color: transparent;
+    background: yellow;
+}
 </style>
