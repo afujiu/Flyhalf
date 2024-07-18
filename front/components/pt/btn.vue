@@ -3,7 +3,7 @@
  * ボタン
  */
 const propsValue = defineProps({
-    cls: String,
+    class: String,
 });
 
 const emit = defineEmits(['click'])
@@ -15,7 +15,7 @@ const click = (e) => {
     emit('click', e)
 }
 const onClass = () => {
-    return propsValue.cls
+    return propsValue.class
 }
 </script>
 <template>
@@ -24,7 +24,7 @@ const onClass = () => {
             <div class="pt-btn-left" :class="onClass()">
                 <slot />
             </div>
-            <div class="pt-btn-right" :class="onClass()"></div>
+            <div class="pt-btn-right" :class="onClass()">　</div>
         </div>
     </button>
 </template>
@@ -37,23 +37,20 @@ const onClass = () => {
 .pt-btn * {
     font-family: "hui-font";
 }
-
-.pt-btn-back {
-    height: 100%;
-}
-
-.pt-btn-left {
-    height: 100%;
-    padding-right: 1em;
-    display: inline;
+.pt-btn-back{
+    height:100%;
     box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.7);
+}
+.pt-btn-left {
+    display: inline-block;
+    height:inherit;
+    
 }
 
 .pt-btn-right {
-    display: inline;
-    width: 1em;
-    height: 100%;
-    box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.7);
+    display: inline-block;
+    height:inherit;
+    width:2em;
 }
 
 /**ホバー **/
@@ -80,8 +77,8 @@ const onClass = () => {
 
 /**アクティブ **/
 .pt-btn:active .pt-btn-back {
-    padding-right: 1em;
-    animation: btn-active-back 100ms;
+    padding-right: 1.5em;
+    box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0);
 }
 
 @keyframes btn-active-back {
@@ -90,58 +87,47 @@ const onClass = () => {
     }
 
     100% {
-        padding-right: 1em;
+        padding-right: 1.5em;
     }
 }
 
 .pt-btn:active .pt-btn-left {
-    padding-right: 0em;
-    animation: btn-active-left 100ms;
+    padding-right: 0.5em;
+    box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.7);
 }
 
 @keyframes btn-active-left {
     0% {
-        padding-right: 1em;
+        padding-right: 0em;
     }
 
     100% {
-        padding-right: -1em;
+        padding-right: 0.5em;
     }
 }
 
 .pt-btn:active .pt-btn-right {
     position: absolute;
-    width: 2em;
-    transform: translate(-1.4em, 4px) rotate(25deg);
-    transform-origin: right;
-    border-radius: 0 2px 5px 0;
-    box-shadow: -4px 2px 1px 1px rgba(0, 0, 0, 0.7);
+    right:0.5em;
+    top:0;
+    display:inline;
+    width:2em;
+    height:100%;
+    box-shadow: -4px 4px 2px 1px rgba(0, 0, 0, 0.7);
+    transform: rotate(25deg);
     animation: btn-active-right 100ms;
+    border-radius: 0px 0px 6px 0px;
 }
 
 @keyframes btn-active-right {
     0% {
         width: 0em;
-        border-radius: 0 0 0 0;
-        transform: translate(0em, -2px);
+        right:0em;
     }
-
-    70% {
-        width: 0.5em;
-        border-radius: 0 0 0 0;
-        transform: translate(0em, -2px) rotate(0deg);
-    }
-
-    75% {
-        width: 0.5em;
-        border-radius: 0 0 0 0;
-        transform: translate(0em, -2px) rotate(0deg);
-    }
-
-
     100% {
-        width: 2em;
-        border-radius: 0 2px 5px 0;
+        width:2em;
+        right:0.5em;
+        border-radius: 0px 0px 6px 0px;
     }
 }
 </style>

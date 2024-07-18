@@ -28,18 +28,21 @@ const pushLogin = async () => {
         <h1 style="font-size:64px;">FlyHalf</h1>
       </v-col>
       <v-col cols="12">
-        {{ loginid }}
-        <pt-textbox v-model="loginid" />
+        <h1>{{ loginid }}</h1>
+        <pt-textbox v-model="loginid" label="FlyHalf"/>
       </v-col>
       <v-col cols="12">
         <pt-card width="16em">
           <v-container>
             <v-row>
-              <v-col cols="12">
-                <pt-textbox v-model="loginid" />
+              <v-col cols="12" class="px-0">
+                <pt-textbox v-model="loginid" class="border-bottom-dash" label="ログイン"/>
               </v-col>
               <v-col cols="12">
-                <pt-btn cls="yellow-bg py-1" @click="pushLogin">ログイン</pt-btn>
+                <pt-btn class="yellow-bg" @click="pushLogin">確定</pt-btn>
+                <pt-btn class="yellow-bg py-1" @click="pushLogin">ログイン</pt-btn>
+                <pt-btn class="yellow-bg py-2" @click="pushLogin">ログイン</pt-btn>
+                <pt-btn class="yellow-bg py-3" @click="pushLogin">ログイン</pt-btn>
               </v-col>
             </v-row>
           </v-container>
