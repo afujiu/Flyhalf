@@ -11,7 +11,6 @@ const emit = defineEmits(['click'])
  * クリック
  */
 const click = (e) => {
-    console.log(e)
     emit('click', e)
 }
 const onClass = () => {
@@ -37,20 +36,22 @@ const onClass = () => {
 .pt-btn * {
     font-family: "hui-font";
 }
-.pt-btn-back{
-    height:100%;
+
+.pt-btn-back {
+    height: 100%;
     box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.7);
 }
+
 .pt-btn-left {
     display: inline-block;
-    height:inherit;
-    
+    height: inherit;
+
 }
 
 .pt-btn-right {
     display: inline-block;
-    height:inherit;
-    width:2em;
+    height: inherit;
+    width: 2em;
 }
 
 /**ホバー **/
@@ -108,11 +109,11 @@ const onClass = () => {
 
 .pt-btn:active .pt-btn-right {
     position: absolute;
-    right:0.5em;
-    top:0;
-    display:inline;
-    width:2em;
-    height:100%;
+    right: 0.5em;
+    top: 0;
+    display: inline;
+    width: 2em;
+    height: 100%;
     box-shadow: -4px 4px 2px 1px rgba(0, 0, 0, 0.7);
     transform: rotate(25deg);
     animation: btn-active-right 100ms;
@@ -122,11 +123,12 @@ const onClass = () => {
 @keyframes btn-active-right {
     0% {
         width: 0em;
-        right:0em;
+        right: 0em;
     }
+
     100% {
-        width:2em;
-        right:0.5em;
+        width: 2em;
+        right: 0.5em;
         border-radius: 0px 0px 6px 0px;
     }
 }

@@ -71,9 +71,10 @@ body {
 /*******************
 ボーダー
 ********************/
-.border-bottom-dash{
-    border-bottom: 2px dashed black;
+.border-bottom-dash {
+    border-bottom: 1px dashed black;
 }
+
 /*****************************************************/
 
 

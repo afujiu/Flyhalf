@@ -25,24 +25,19 @@ const onClass = () => {
 }
 </script>
 <template>
-    <input
-        v-model="localModel"
-        :type="type"
-        :placeholder="label"
-        :class="onClass()"
-        @input="input" />
+    <input v-model="localModel" :type="type" :placeholder="label" :class="onClass()" @input="input" />
 </template>
 <style>
 /**
  * 黒板の場合
  */
 input {
-    width:inherit;
+    width: inherit;
     font-family: "chalks-font";
     color: white;
     background: transparent !important;
-    border:2px solid;
-    border-color:transparent;
+    border: 2px solid;
+    border-color: transparent;
 }
 
 input:focus {
