@@ -1,9 +1,18 @@
 # TableData
+
+## Tenant
+| key | name | type | detail |
+|:--|:--|:--|:--|
+| id | ユニークキー | INTEGER | ユニークidx |
+| key | チームキー | TEXT | 公開用のキー |
+| name | 名前 | TEXT | 説明用のチーム名 |
+| token | 認証用のトークン | TEXT | 「`${key}:${key+チームパスワードのハッシュ地}`」 |
+
 ## Task
 | key | name | type | detail |
 |:--|:--|:--|:--|
 | id | ユニークキー | number | ユニークキー |
-| teamKey | チームキー | string | チームキー |
+| tenantId | チームキー | string | チームキー |
 | beforeId | 並び順調整ID | number | ユニークキー |
 | deteleDate | 削除日時 | string datetime | YYYY-MM-DDTHH:MM:SSZ 削除の場合は空白 |
 | title | タイトル | string | 1行タイトル |
@@ -25,7 +34,7 @@
 | key | name | type | detail |
 |:--|:--|:--|:--|
 | id | ユニークキー | number | ユニークキー |
-| teamKey | チームキー | string | チームキー |
+| tenantId | チームキー | string | チームキー |
 | beforeId | 並び順調整ID | number | ユニークキー |
 | deteleDate | 削除日時 | string datetime | YYYY-MM-DDTHH:MM:SSZ 削除の場合は空白 |
 | title | タイトル | string | 1行タイトル |
@@ -38,7 +47,7 @@
 | key | name | type | detail |
 |:--|:--|:--|:--|
 | id | ユニークキー | number | ユニークキー |
-| teamKey | チームキー | string | チームキー |
+| tenantId | チームキー | string | チームキー |
 | loginid | ログインID | string | ログインID |
 | password | パスワード | string | 「ログインID+":"+平文パスワード」のsha256 |
 | lastName | 苗字 | string | 苗字 |

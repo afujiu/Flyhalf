@@ -25,9 +25,21 @@ const onClass = () => {
 }
 </script>
 <template>
-    <input v-model="localModel" :type="type" :placeholder="label" :class="onClass()" @input="input" />
+    <span class="pt-textbox">
+        <div class="text-label">{{ label }}</div>
+        <input v-model="localModel" :type="type" :class="onClass()" @input="input" />
+    </span>
+    
 </template>
 <style>
+.pt-textbox{
+    width: inherit;
+}
+.text-label{
+    width: inherit;
+    text-align:left;
+    font-size:0.6em;
+}
 /**
  * 黒板の場合
  */
@@ -35,13 +47,13 @@ input {
     width: inherit;
     font-family: "chalks-font";
     color: white;
-    background: transparent !important;
+    background: transparent;
     border: 2px solid;
     border-color: transparent;
 }
-
 input:focus {
     outline: none;
+    background:rgba(0,0,0,0.1);
 }
 
 /**
@@ -56,5 +68,14 @@ input:focus {
 #password-input {
     color: black;
     font-family: Georgia;
+}
+
+input[type="password"]{
+    color: black!important;
+    font-family: Georgia!important;
+}
+input[type="password"]:focus{
+    color: black!important;
+    font-family: Georgia!important;
 }
 </style>

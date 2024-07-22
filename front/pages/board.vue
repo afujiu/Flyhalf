@@ -1,21 +1,19 @@
 <script setup>
+import menusDashboard from '~/pages/menus/dashboard.vue'
+import menusKanban from '~/pages/menus/kanban.vue'
+import menusList from '~/pages/menus/list.vue'
+import menusMap from '~/pages/menus/map.vue'
+import menusSprint from '~/pages/menus/sprint.vue'
 const { login } = apiStore()
 const isLoading = ref(false)
 const mode = ref('dashboard')
+
 
 const created = async () => {
   await tableStore().getUserList()
   isLoading.value = true
 }
 created()
-
-
-/**
- * ログイン
- */
-const pushLogin = async () => {
-  router.push('/board')
-}
 
 </script>
 <template>
@@ -25,7 +23,7 @@ const pushLogin = async () => {
         <h1 style="font-size:64px;">FlyHalf</h1>
       </v-col>
       <v-col cols="2" class="pa-0 ma-0">
-        <div class="card menu">
+        <pt-card class="menu">
           <button class="menu-select" @click="mode = 'dashboard'"
             :class="[mode == 'dashboard' ? 'selected' : '']">ダッシュボード</button>
           <button class="menu-select" @click="mode = 'list'" :class="[mode == 'list' ? 'selected' : '']">リスト</button>
@@ -34,7 +32,7 @@ const pushLogin = async () => {
           <button class="menu-select" @click="mode = 'map'" :class="[mode == 'map' ? 'selected' : '']">マップ</button>
           <button class="menu-select" @click="mode = 'sprint'"
             :class="[mode == 'sprint' ? 'selected' : '']">スプリント</button>
-        </div>
+        </pt-card>
       </v-col>
       <v-col cols="10" class="pa-0 pl-5 ma-0">
         <menus-dashboard v-if="mode == 'dashboard'"></menus-dashboard>
@@ -102,6 +100,7 @@ const pushLogin = async () => {
     z-index: 999;
     color: white;
     background: rgba(0, 0, 0, 0.5);
+    outline: none;
 }
 
 .menu-select.selected {

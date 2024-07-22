@@ -22,28 +22,39 @@ const input = (e) => {
 }
 </script>
 <template>
-    <select v-model="localModel" :class="class" @input="input">
-        <option disabled hidden value="">{{ label }}</option>
-        <option v-for="(item, idx) in items" :key="idx" ::value="item.key">{{ item.value }}</option>
-    </select>
+    <span class="pt-textbox">
+        <div class="text-label">{{ label }}</div>
+        <select v-model="localModel" :class="class" @input="input">
+            <option v-for="(item, idx) in items" :key="idx" ::value="item.key">{{ item.value }}</option>
+        </select>
+    </span>
 </template>
 <style>
+.pt-textbox{
+    width: inherit;
+}
+.text-label{
+    width: inherit;
+    text-align:left;
+    font-size:0.6em;
+}
 select {
     width: inherit;
     font-family: "chalks-font";
     color: white;
-    background: black;
-    background: transparent !important;
+    background: transparent;
     border: none;
     outline: none;
 }
-
 select option {
     font-family: "hui-font";
     background-color: white;
     color: black;
 }
 
+select:focus{
+    background:rgba(0,0,0,0.1);
+}
 /**
  * カード内の場合
  */
