@@ -3,7 +3,7 @@
  */
 import crypto from 'crypto-js'
 import JSEncrypt from 'jsencrypt'
-export const apiStore = () => {
+export const request = () => {
     //#region session****************************************************
     /** session取得
      * 
@@ -67,12 +67,20 @@ export const apiStore = () => {
                     crypt.setPrivateKey(privateKey)
                     let decypt = crypt.decrypt(data)
                     decypt = JSON.parse(decypt)
+                    console
                     resolve(decypt)
                 })
                 .catch(error => {
                     resolve({ status: false, data: null, err: error })
                 })
         })
+    }
+    
+    /**
+     * 
+     */
+    const createLocalKey()=>{
+
     }
     /** チーム選択
      * 

@@ -1,8 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 const router = useRouter()
-const { login } = apiStore()
-
+const {fetchServer} = requestStore()
 const isLoading = ref(false)
 
 const loginid = ref('')
@@ -10,7 +9,6 @@ const password=ref('')
 const mode = ref('')
 const modeList = ref([{ key: 'sqlite', value: 'SQlite' }, { key: 'kintone', value: 'kintone' },])
 const created = async () => {
-  //const result = await login(null, null, null)
   isLoading.value = true
 }
 created()
@@ -19,7 +17,7 @@ created()
  * ログイン
  */
 const pushLogin = async () => {
-  router.push('/board')
+console.log(await fetchServer('hoge',{fuga:'piyo'}))
 }
 
 </script>

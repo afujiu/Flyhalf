@@ -57,7 +57,7 @@ const onClass = () => {
 /**ホバー **/
 .pt-btn:hover .pt-btn-back,
 .pt-btn:focus .pt-btn-back {
-    transform: rotate(-15deg);
+    transform: rotate(-10deg);
     animation: btn-focus 150ms;
 }
 
@@ -67,11 +67,11 @@ const onClass = () => {
     }
 
     70% {
-        transform: rotate(10deg);
+        transform: rotate(5deg);
     }
 
     100% {
-        transform: rotate(-15deg);
+        transform: rotate(-10deg);
     }
 }
 

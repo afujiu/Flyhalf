@@ -1,4 +1,6 @@
 <script setup>
+const {init} = requestStore()
+await init()
 </script>
 <template>
   <main>

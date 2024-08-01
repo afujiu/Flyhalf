@@ -1,18 +1,20 @@
+/******************************
+ * node.jsの基本設定
+ */
 const express = require(`express`)
-const app = express()
+const exp = express()
 const cors = require(`cors`)
-const rest = require("./rest.js")
-const rtc = require("./rtc.js")
+const gate = require("./gate.js")
 
-app.listen(8080, () => {
+exp.listen(8080, () => {
+    console.log('8080 started')
 })
-app.use(express.static(`./front`));
-app.use(express.urlencoded({ extended: true, limit: `1000mb` }))
-app.use(express.json({ extended: true, limit: `1000mb` }))
-app.use(cors())
+exp.use(express.static(`./front`));
+exp.use(express.urlencoded({ extended: true, limit: `1000mb` }))
+exp.use(express.json({ extended: true, limit: `1000mb` }))
+exp.use(cors())
 
 /**
  * restAPI
  */
-rest.api(app)
-rtc.handling(app)
+gate.api(exp)
